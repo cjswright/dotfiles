@@ -1,1 +1,0 @@
-("/mnt/users/cw00/contracts/orca/Doublet_RPI/" "/mnt/users/cw00/contracts/orca/doblet1v5/" "~/.emacs.d/" "/mnt/users/cw00/contracts/jaguar/pacificfox/" "~/" "/mnt/users/cw00/ubiquios/working/software/" "/mnt/users/cw00/projects/jaguar/testing/" "/mnt/users/cw00/ubiquios/working/software/software/" "/mnt/users/cw00/projects/cheetah/escpert/")
