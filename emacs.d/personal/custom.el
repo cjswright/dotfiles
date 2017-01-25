@@ -41,7 +41,7 @@
  '(ispell-dictionary "en_GB")
  '(package-selected-packages
    (quote
-    (d-mode solarized-theme markdown-mode zop-to-char zenburn-theme which-key volatile-highlights undo-tree smartrep smartparens smart-mode-line operate-on-number move-text magit projectile ov imenu-anywhere guru-mode grizzl god-mode gitignore-mode gitconfig-mode git-timemachine gist flycheck expand-region epl easy-kill diminish diff-hl discover-my-major dash crux browse-kill-ring beacon anzu ace-window)))
+    (magit-gerrit d-mode solarized-theme markdown-mode zop-to-char zenburn-theme which-key volatile-highlights undo-tree smartrep smartparens smart-mode-line operate-on-number move-text magit projectile ov imenu-anywhere guru-mode grizzl god-mode gitignore-mode gitconfig-mode git-timemachine gist flycheck expand-region epl easy-kill diminish diff-hl discover-my-major dash crux browse-kill-ring beacon anzu ace-window)))
  '(prelude-clean-whitespace-on-save nil)
  '(prelude-whitespace t)
  '(projectile-globally-ignored-directories
@@ -199,7 +199,7 @@ confirmation"
          (inc-guard-base (replace-regexp-in-string "[.-]"
                                                    "_"
                                                    fbasename)))
-    (concat (upcase inc-guard-base) "_")))
+    (concat (upcase inc-guard-base) "__")))
 
 (add-hook 'find-file-not-found-hooks
           '(lambda ()
@@ -226,3 +226,7 @@ open and unsaved."
             (find-file filename)
             (call-interactively command))
           (dired-get-marked-files))))
+
+(require 'magit-gerrit)
+
+(setq-default magit-gerrit-ssh-creds "cw00@gerrit")
