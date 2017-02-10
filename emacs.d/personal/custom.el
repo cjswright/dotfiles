@@ -11,6 +11,9 @@
      (java-mode . "java")
      (awk-mode . "awk")
      (other . "gnu"))))
+ '(comint-input-ignoredups t)
+ '(comint-move-point-for-output (quote this))
+ '(comint-scroll-to-bottom-on-input (quote this))
  '(company-backends
    (quote
     (company-bbdb company-nxml company-css company-eclim company-semantic company-clang company-xcode company-cmake company-capf company-files
@@ -39,9 +42,12 @@
  '(imenu-auto-rescan t)
  '(inhibit-startup-screen t)
  '(ispell-dictionary "en_GB")
+ '(multi-term-scroll-show-maximum-output t)
+ '(multi-term-scroll-to-bottom-on-output t)
+ '(org-agenda-files nil)
  '(package-selected-packages
    (quote
-    (magit-gerrit d-mode solarized-theme markdown-mode zop-to-char zenburn-theme which-key volatile-highlights undo-tree smartrep smartparens smart-mode-line operate-on-number move-text magit projectile ov imenu-anywhere guru-mode grizzl god-mode gitignore-mode gitconfig-mode git-timemachine gist flycheck expand-region epl easy-kill diminish diff-hl discover-my-major dash crux browse-kill-ring beacon anzu ace-window)))
+    (multi-term magit-gerrit d-mode solarized-theme markdown-mode zop-to-char zenburn-theme which-key volatile-highlights undo-tree smartrep smartparens smart-mode-line operate-on-number move-text magit projectile ov imenu-anywhere guru-mode grizzl god-mode gitignore-mode gitconfig-mode git-timemachine gist flycheck expand-region epl easy-kill diminish diff-hl discover-my-major dash crux browse-kill-ring beacon anzu ace-window)))
  '(prelude-clean-whitespace-on-save nil)
  '(prelude-whitespace t)
  '(projectile-globally-ignored-directories
@@ -114,7 +120,7 @@
 
 (global-set-key (kbd "C-c l") 'org-store-link)
 
-(setq org-agenda-files (quote ("~/org/todo.org")))
+(setq org-agenda-files (quote ("/mnt/users/cw00/org/todo.org")))
 
 ;;set priority range from A to C with default A
 (setq org-highest-priority ?A)
@@ -132,15 +138,19 @@
 ;;capture todo items using C-c c t
 (define-key global-map (kbd "C-c c") 'org-capture)
 (setq org-capture-templates
-      '(("t" "todo" entry (file+headline "~/org/todo.org" "Tasks")
-         "* TODO [#A] %?")))
+      '(("t" "todo" entry (file+headline "/mnt/users/cw00/org/todo.org" "Tasks")
+         "* TODO [#A] %?")
+        ("p" "pacificfox" entry (file+headline "/mnt/users/cw00/org/todo.org" "PacificFox")
+         "* TODO [#A] %?")
+        )
+      )
 
 (define-key prelude-mode-map (kbd "C-c i") 'helm-imenu-anywhere)
 
 ;; Long term registers
 
 (set-register ?c '(file . "~/.emacs.d/personal/custom.el"))
-(set-register ?t '(file . "~/org/todo.org"))
+(set-register ?t '(file . "/mnt/users/cw00/org/todo.org"))
 (set-register ?u '(file . "/mnt/users/cw00"))
 
 
@@ -210,7 +220,7 @@ confirmation"
                    (newline)
                    (insert "#define " include-guard)
                    (newline 4)
-                   (insert "#endif /* " include-guard " */")
+                   (insert "#endif")
                    (newline)
                    (previous-line 3)
                    (set-buffer-modified-p nil))))))
