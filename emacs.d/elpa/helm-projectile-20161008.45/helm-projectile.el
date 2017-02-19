@@ -613,7 +613,6 @@ With a prefix ARG invalidates the cache first."
            (helm-boring-file-regexp-list nil))
        (helm :sources ,source
              :buffer "*helm projectile*"
-             :truncate-lines t
              :prompt (projectile-prepend-project-name ,prompt)))))
 
 (helm-projectile-command "switch-project" 'helm-source-projectile-projects "Switch to project: " t)
@@ -635,7 +634,6 @@ With a prefix ARG invalidates the cache first."
                                                             files
                                                           project-files))
             :buffer "*helm projectile*"
-            :truncate-lines t
             :prompt (projectile-prepend-project-name "Find file: ")))))
 
 ;;;###autoload
@@ -663,7 +661,6 @@ Other file extensions can be customized with the variable `projectile-other-file
                                :mode-line helm-read-file-name-mode-line-string
                                :action helm-projectile-file-actions)
                     :buffer "*helm projectile*"
-                    :truncate-lines t
                     :prompt (projectile-prepend-project-name "Find other file: ")))))
       (error "No other file found"))))
 
@@ -889,7 +886,6 @@ If invoked outside of a project, displays a list of known projects to jump."
   (let ((helm-ff-transformer-show-only-basename nil))
     (helm :sources helm-projectile-sources-list
           :buffer "*helm projectile*"
-          :truncate-lines t
           :prompt (projectile-prepend-project-name (if (projectile-project-p)
                                                        "pattern: "
                                                      "Switch to project: ")))))
