@@ -39,12 +39,13 @@
  '(flycheck-disabled-checkers (quote (c/c++-gcc)))
  '(flycheck-python-mypy-executable "C:\\Program Files (x86)\\Python35-32\\Scripts\\mypy.bat")
  '(flycheck-python-pylint-executable "C:\\Program Files (x86)\\Python35-32\\Scripts\\pylint.exe")
+ '(helm-buffer-max-length 20)
  '(imenu-auto-rescan t)
  '(inhibit-startup-screen t)
  '(ispell-dictionary "en_GB")
  '(multi-term-scroll-show-maximum-output t)
  '(multi-term-scroll-to-bottom-on-output t)
- '(org-agenda-files nil)
+ '(org-agenda-files nil t)
  '(package-selected-packages
    (quote
     (multi-term magit-gerrit d-mode solarized-theme markdown-mode zop-to-char zenburn-theme which-key volatile-highlights undo-tree smartrep smartparens smart-mode-line operate-on-number move-text magit projectile ov imenu-anywhere guru-mode grizzl god-mode gitignore-mode gitconfig-mode git-timemachine gist flycheck expand-region epl easy-kill diminish diff-hl discover-my-major dash crux browse-kill-ring beacon anzu ace-window)))
