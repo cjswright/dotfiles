@@ -39,7 +39,7 @@
  '(flycheck-disabled-checkers (quote (c/c++-gcc)))
  '(flycheck-python-mypy-executable "C:\\Program Files (x86)\\Python35-32\\Scripts\\mypy.bat")
  '(flycheck-python-pylint-executable "C:\\Program Files (x86)\\Python35-32\\Scripts\\pylint.exe")
- '(helm-buffer-max-length 20)
+ '(helm-buffer-max-length 30)
  '(imenu-auto-rescan t)
  '(inhibit-startup-screen t)
  '(ispell-dictionary "en_GB")
