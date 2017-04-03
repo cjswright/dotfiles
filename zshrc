@@ -100,6 +100,8 @@ if [ -n "$INSIDE_EMACS" ]; then
 fi
 
 . /mnt/departments/engineering/modules/tcl/init/bash
-module load timetracker
-module load projects/handy
+
 module load gerrit
+
+
+cd /mnt/users/cw00
