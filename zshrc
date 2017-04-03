@@ -101,7 +101,7 @@ fi
 
 . /mnt/departments/engineering/modules/tcl/init/bash
 
-module load gerrit
+module load consulting
 
 
 cd /mnt/users/cw00
