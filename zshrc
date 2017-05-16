@@ -100,9 +100,7 @@ if [ -n "$INSIDE_EMACS" ]; then
 fi
 
 . /mnt/departments/engineering/modules/tcl/init/bash
-module load timetracker
-module load projects/handy
-module load gerrit
+module load consulting
 
 if [[ "$TERM" == "dumb" ]]
 then
@@ -113,3 +111,6 @@ then
     unfunction preexec
     PS1='$ '
 fi
+
+
+cd /mnt/users/cw00

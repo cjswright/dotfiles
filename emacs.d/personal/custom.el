@@ -39,7 +39,7 @@
  '(flycheck-disabled-checkers (quote (c/c++-gcc)))
  '(flycheck-python-mypy-executable "C:\\Program Files (x86)\\Python35-32\\Scripts\\mypy.bat")
  '(flycheck-python-pylint-executable "C:\\Program Files (x86)\\Python35-32\\Scripts\\pylint.exe")
- '(helm-buffer-max-length 20)
+ '(helm-buffer-max-length 30)
  '(imenu-auto-rescan t)
  '(inhibit-startup-screen t)
  '(ispell-dictionary "en_GB")
@@ -48,7 +48,7 @@
  '(org-agenda-files nil t)
  '(package-selected-packages
    (quote
-    (multi-term magit-gerrit d-mode solarized-theme markdown-mode zop-to-char zenburn-theme which-key volatile-highlights undo-tree smartrep smartparens smart-mode-line operate-on-number move-text magit projectile ov imenu-anywhere guru-mode grizzl god-mode gitignore-mode gitconfig-mode git-timemachine gist flycheck expand-region epl easy-kill diminish diff-hl discover-my-major dash crux browse-kill-ring beacon anzu ace-window)))
+    (visual-regexp visual-regexp-steroids multi-term magit-gerrit d-mode solarized-theme markdown-mode zop-to-char zenburn-theme which-key volatile-highlights undo-tree smartrep smartparens smart-mode-line operate-on-number move-text magit projectile ov imenu-anywhere guru-mode grizzl god-mode gitignore-mode gitconfig-mode git-timemachine gist flycheck expand-region epl easy-kill diminish diff-hl discover-my-major dash crux browse-kill-ring beacon anzu ace-window)))
  '(prelude-clean-whitespace-on-save nil)
  '(prelude-whitespace t)
  '(projectile-globally-ignored-directories
@@ -241,3 +241,19 @@ open and unsaved."
 (require 'magit-gerrit)
 
 (setq-default magit-gerrit-ssh-creds "cw00@gerrit")
+
+(require 'visual-regexp)
+(require 'visual-regexp-steroids)
+
+(define-key global-map (kbd "C-M-%") 'vr/query-replace)
+(define-key global-map (kbd "C-M-r") 'vr/isearch-forward)
+(define-key global-map (kbd "C-M-s") 'vr/isearch-backward)
+
+(defun ediff-copy-both-to-C ()
+  (interactive)
+  (ediff-copy-diff ediff-current-difference nil 'C nil
+                   (concat
+                    (ediff-get-region-contents ediff-current-difference 'A ediff-control-buffer)
+                    (ediff-get-region-contents ediff-current-difference 'B ediff-control-buffer))))
+(defun add-d-to-ediff-mode-map () (define-key ediff-mode-map "d" 'ediff-copy-both-to-C))
+(add-hook 'ediff-keymap-setup-hook 'add-d-to-ediff-mode-map)
