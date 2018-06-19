@@ -129,5 +129,3 @@ then
     unfunction preexec
     PS1='$ '
 fi
-
-cd /mnt/users/cw00
