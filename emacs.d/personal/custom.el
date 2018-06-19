@@ -3,73 +3,30 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(buffer-face-mode-face (quote default))
- '(c-basic-offset 4)
- '(c-default-style
-   (quote
-    ((c-mode . "stroustrup")
-     (java-mode . "java")
-     (awk-mode . "awk")
-     (other . "gnu"))))
- '(comint-input-ignoredups t)
- '(comint-move-point-for-output (quote this))
- '(comint-scroll-to-bottom-on-input (quote this))
- '(company-backends
-   (quote
-    (company-bbdb company-nxml company-css company-eclim company-semantic company-clang company-xcode company-cmake company-capf company-files
-                  (company-dabbrev-code company-gtags company-etags company-keywords)
-                  company-oddmuse company-dabbrev)))
- '(csharp-mode-hook
-   (quote
-    ((lambda nil
-       (c-set-offset
-        (quote comment-intro)
-        0)
-       (subword-mode 1)
-       (setq c-basic-offset 4)))))
+ '(backup-directory-alist (quote ((".*" . "/tmp/cw00_emacs_backups"))))
  '(custom-safe-themes
    (quote
     ("8aebf25556399b58091e533e455dd50a6a9cba958cc4ebb0aab175863c25b9a4" default)))
- '(ediff-merge-split-window-function (quote split-window-horizontally))
- '(ediff-split-window-function (quote split-window-horizontally))
- '(ff-ignore-include t)
- '(flycheck-clang-args (quote ("-ferror-limit=0")))
- '(flycheck-cppcheck-checks (quote ("style" "warning")))
- '(flycheck-cppcheck-inconclusive t)
- '(flycheck-disabled-checkers (quote (c/c++-gcc)))
- '(flycheck-python-mypy-executable "C:\\Program Files (x86)\\Python35-32\\Scripts\\mypy.bat")
- '(flycheck-python-pylint-executable "C:\\Program Files (x86)\\Python35-32\\Scripts\\pylint.exe")
- '(helm-buffer-max-length 30)
- '(imenu-auto-rescan t)
- '(inhibit-startup-screen t)
- '(ispell-dictionary "en_GB")
- '(multi-term-scroll-show-maximum-output t)
- '(multi-term-scroll-to-bottom-on-output t)
- '(org-agenda-files nil t)
+ '(magit-rebase-arguments (quote ("--interactive")))
  '(package-selected-packages
    (quote
-    (visual-regexp visual-regexp-steroids multi-term magit-gerrit d-mode solarized-theme markdown-mode zop-to-char zenburn-theme which-key volatile-highlights undo-tree smartrep smartparens smart-mode-line operate-on-number move-text magit projectile ov imenu-anywhere guru-mode grizzl god-mode gitignore-mode gitconfig-mode git-timemachine gist flycheck expand-region epl easy-kill diminish diff-hl discover-my-major dash crux browse-kill-ring beacon anzu ace-window)))
- '(prelude-clean-whitespace-on-save nil)
- '(prelude-whitespace t)
- '(projectile-globally-ignored-directories
-   (quote
-    (".idea" ".eunit" ".git" ".hg" ".fslckout" ".bzr" "_darcs" ".tox" ".svn" ".stack-work" "_git" ".vs" "$tf" "Debug" "Release")))
- '(scroll-preserve-screen-position nil)
- '(smerge-command-prefix "v")
- '(tab-width 4)
- '(whitespace-style (quote (face trailing tabs lines-tail empty))))
+    (bitbake magit magit-gerrit csv-mode python-docstring sphinx-mode sphinx-doc avy-zap ggtags nyan-mode fill-column-indicator solarized solarized-dark markdown-mode zop-to-char zenburn-theme which-key volatile-highlights undo-tree smartrep smartparens smart-mode-line operate-on-number move-text projectile ov imenu-anywhere guru-mode grizzl god-mode gitignore-mode gitconfig-mode git-timemachine gist flycheck expand-region epl editorconfig easy-kill diminish diff-hl discover-my-major dash crux browse-kill-ring beacon anzu ace-window)))
+ '(projectile-enable-caching t)
+ '(shift-select-mode nil))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(whitespace-space ((t (:foreground "#586e75" :slant italic)))))
+ )
 
-(load-theme 'solarized-dark)
+(prelude-require-packages '(fill-column-indicator
+                            magit-gerrit
+                            visual-regexp
+                            visual-regexp-steroids))
 
-;(setq prelude-whitespace nil)
-(setq-default fill-column 80)
-(setq-default whitespace-line-column 80)
+(setq scroll-preserve-screen-position 'nil
+      prelude-clean-whitespace-on-save 'nil)
 
 (add-hook 'c-mode-common-hook
           (lambda()
@@ -78,7 +35,10 @@
             (c-set-offset 'inline-open 0)
             (c-set-offset 'innamespace 0)
             (c-set-offset 'inextern-lang 0)
-            (c-set-offset 'comment-intro 0)))
+            (c-set-offset 'comment-intro 0)
+            (ggtags-mode 1)
+            (smartparens-strict-mode 0)
+            ))
 
 (add-hook 'csharp-mode-hook
           (lambda()
@@ -90,9 +50,22 @@
 
 (add-hook 'prog-mode-hook
           (lambda ()
+            (set-fill-column 80)
             (subword-mode 1)
-            (setq indent-tabs-mode 'nil)
-            (local-set-key (kbd "M-,") 'pop-tag-mark)))
+            (setq indent-tabs-mode 'nil
+                  c-default-style '((c-mode . "stroustrup")
+                                    (java-mode . "java")
+                                    (awk-mode . "awk")
+                                    (other . "gnu")))
+            (local-set-key (kbd "M-,") 'pop-tag-mark)
+          ; (fci-mode 1)
+            ))
+
+; Tab width of 4 everywhere
+(setq-default tab-width 4)
+
+; Set our dictionary to british english (there's no NZ?!)
+(setq-default ispell-dictionary "en_GB")
 
 (add-hook 'asm-mode-hook
           (lambda ()
@@ -102,22 +75,15 @@
           (lambda ()
             (set-fill-column 72)))
 
-(smartparens-strict-mode 0)
-
-(global-set-key (kbd "S-C-<left>") 'shrink-window-horizontally)
-(global-set-key (kbd "S-C-<right>") 'enlarge-window-horizontally)
-(global-set-key (kbd "S-C-<down>") 'shrink-window)
-(global-set-key (kbd "S-C-<up>") 'enlarge-window)
-
-(require 'nyan-mode)
-(nyan-mode 1)
-
-(nyan-start-animation)
-(setq-default nyan-bar-length 10)
+(add-hook 'python-mode-hook
+          (lambda ()
+            (set-fill-column 79)  ; PEP8 demands 79 char
+            (setq python-docstring-sentence-end-double-space 'nil
+                  python-fill-docstring-style 'onetwo)
+            (python-docstring-mode 1)
+            ))
 
 (setq guru-warn-only nil)
-
-;; Org mode
 
 (global-set-key (kbd "C-c l") 'org-store-link)
 
@@ -141,22 +107,12 @@
 (setq org-capture-templates
       '(("t" "todo" entry (file+headline "/mnt/users/cw00/org/todo.org" "Tasks")
          "* TODO [#A] %?")
-        ("p" "pacificfox" entry (file+headline "/mnt/users/cw00/org/todo.org" "PacificFox")
-         "* TODO [#A] %?")
         )
       )
-
-(define-key prelude-mode-map (kbd "C-c i") 'helm-imenu-anywhere)
-
-;; Long term registers
 
 (set-register ?c '(file . "~/.emacs.d/personal/custom.el"))
 (set-register ?t '(file . "/mnt/users/cw00/org/todo.org"))
 (set-register ?u '(file . "/mnt/users/cw00"))
-
-
-(global-set-key (kbd "C-c j") 'avy-goto-char)
-(global-set-key (kbd "C-c z") 'avy-zap-up-to-char-dwim)
 
 (global-unset-key (kbd "C-x C-c"))
 (global-unset-key (kbd "C-z"))
@@ -169,39 +125,26 @@
             (setq js-indent-level 2)))
 
 (setq auto-mode-alist
-      (cons '("SConstruct" . python-mode) auto-mode-alist))
-(setq auto-mode-alist
-      (cons '("SConscript" . python-mode) auto-mode-alist))
+      (append '(("SConstruct" . python-mode)
+                ("SConscript" . python-mode)
+                ("*.scons" . python-mode))
+              auto-mode-alist))
 
+(require 'magit-gerrit)
+(setq-default magit-gerrit-ssh-creds "cw00@gerrit")
 
-(add-hook 'ediff-startup-hook
-          (lambda ()
-            (local-set-key (kbd"q") 'my-ediff-quit)))
-
-(defun my-ediff-quit ()
-  "If any of the ediff buffers have been modified, ask if changes
-should be saved. Then quit ediff normally, without asking for
-confirmation"
+(defun ediff-copy-both-to-C ()
   (interactive)
-  (ediff-barf-if-not-control-buffer)
-  (let* ((buf-a ediff-buffer-A)
-         (buf-b ediff-buffer-B)
-         (buf-c ediff-buffer-C)
-         (ctl-buf (current-buffer))
-         (modified (remove-if-not 'buffer-modified-p
-                                  (list buf-a buf-b buf-c))))
-    (let ((save (if modified (yes-or-no-p "Save changes?")nil)))
-      (loop for buf in modified do
-            (progn
-              (set-buffer buf)
-              (if save
-                  (save-buffer)
-                (set-buffer-modified-p nil))))
-      (set-buffer ctl-buf)
-      (ediff-really-quit nil))))
+  (ediff-copy-diff ediff-current-difference nil 'C nil
+                   (concat
+                    (ediff-get-region-contents ediff-current-difference 'A ediff-control-buffer)
+                    (ediff-get-region-contents ediff-current-difference 'B ediff-control-buffer))))
+(defun add-d-to-ediff-mode-map () (define-key ediff-mode-map "d" 'ediff-copy-both-to-C))
+(add-hook 'ediff-keymap-setup-hook 'add-d-to-ediff-mode-map)
 
-;; (setq prelude-guru 'nil)
-
+(define-key global-map (kbd "C-M-%") 'vr/query-replace)
+(define-key global-map (kbd "C-M-r") 'vr/isearch-forward)
+(define-key global-map (kbd "C-M-s") 'vr/isearch-backward)
 
 (defun get-include-guard ()
   "Return a string suitable for use in a C/C++ include guard"
@@ -221,39 +164,16 @@ confirmation"
                    (newline)
                    (insert "#define " include-guard)
                    (newline 4)
-                   (insert "#endif")
+                   (insert "#endif /* " include-guard " */")
                    (newline)
                    (previous-line 3)
                    (set-buffer-modified-p nil))))))
 
 
-(defun mine-dired-do-command (command)
-  "Run COMMAND on marked files. Any files not already open will be opened.
-After this command has been run, any buffers it's modified will remain
-open and unsaved."
-  (interactive "CRun on marked files M-x ")
-  (save-window-excursion
-    (mapc (lambda (filename)
-            (find-file filename)
-            (call-interactively command))
-          (dired-get-marked-files))))
+(setq projectile-mode-line
+      '(:eval (format " Projectile[%s]"
+                      (projectile-project-name))))
 
-(require 'magit-gerrit)
 
-(setq-default magit-gerrit-ssh-creds "cw00@gerrit")
-
-(require 'visual-regexp)
-(require 'visual-regexp-steroids)
-
-(define-key global-map (kbd "C-M-%") 'vr/query-replace)
-(define-key global-map (kbd "C-M-r") 'vr/isearch-forward)
-(define-key global-map (kbd "C-M-s") 'vr/isearch-backward)
-
-(defun ediff-copy-both-to-C ()
-  (interactive)
-  (ediff-copy-diff ediff-current-difference nil 'C nil
-                   (concat
-                    (ediff-get-region-contents ediff-current-difference 'A ediff-control-buffer)
-                    (ediff-get-region-contents ediff-current-difference 'B ediff-control-buffer))))
-(defun add-d-to-ediff-mode-map () (define-key ediff-mode-map "d" 'ediff-copy-both-to-C))
-(add-hook 'ediff-keymap-setup-hook 'add-d-to-ediff-mode-map)
+(global-set-key (kbd "C-c j") 'avy-goto-char)
+(global-set-key (kbd "C-c z") 'avy-zap-up-to-char-dwim)

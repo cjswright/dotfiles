@@ -3,8 +3,8 @@
 ;;; Code:
 (add-to-list 'load-path (directory-file-name (or (file-name-directory #$) (car load-path))))
 
-;;;### (autoloads nil "json-snatcher" "json-snatcher.el" (22568 58408
-;;;;;;  116998 454000))
+;;;### (autoloads nil "json-snatcher" "json-snatcher.el" (23030 33897
+;;;;;;  857975 618000))
 ;;; Generated autoloads from json-snatcher.el
 
 (autoload 'jsons-print-path "json-snatcher" "\

@@ -3,8 +3,8 @@
 ;;; Code:
 (add-to-list 'load-path (directory-file-name (or (file-name-directory #$) (car load-path))))
 
-;;;### (autoloads nil nil ("magit-gerrit.el") (22664 1896 945878
-;;;;;;  523000))
+;;;### (autoloads nil nil ("magit-gerrit.el") (23211 10515 776196
+;;;;;;  849000))
 
 ;;;***
 

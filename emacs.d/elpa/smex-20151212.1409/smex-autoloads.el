@@ -3,7 +3,7 @@
 ;;; Code:
 (add-to-list 'load-path (directory-file-name (or (file-name-directory #$) (car load-path))))
 
-;;;### (autoloads nil "smex" "smex.el" (22568 58395 720957 958000))
+;;;### (autoloads nil "smex" "smex.el" (23030 33868 53898 728000))
 ;;; Generated autoloads from smex.el
 
 (autoload 'smex "smex" "\
