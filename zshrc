@@ -99,10 +99,10 @@ if [ -n "$INSIDE_EMACS" ]; then
     print -P "\033AnSiTc %d"
 fi
 
-. /mnt/departments/engineering/modules/tcl/init/zsh
+#. /mnt/departments/engineering/modules/tcl/init/zsh
 
-module load consulting
-module load global
+#module load consulting
+#module load global
 
 bindkey "${key[Up]}" up-line-or-local-history
 bindkey "${key[Down]}" down-line-or-local-history
@@ -129,3 +129,12 @@ then
     unfunction preexec
     PS1='$ '
 fi
+
+export GOPATH=$HOME/go
+export PATH=$PATH:$GOPATH/bin
+
+export ANDROID_HOME=$HOME/Android/Sdk
+export PATH=$PATH:$ANDROID_HOME/emulator
+export PATH=$PATH:$ANDROID_HOME/tools
+export PATH=$PATH:$ANDROID_HOME/tools/bin
+export PATH=$PATH:$ANDROID_HOME/platform-tools
