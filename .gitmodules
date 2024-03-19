@@ -4,3 +4,6 @@
 [submodule "prelude"]
 	path = prelude
 	url = git@github.com:cjswright/prelude.git
+[submodule "doomemacs"]
+	path = doomemacs
+	url = https://github.com/doomemacs/doomemacs

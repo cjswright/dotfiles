@@ -7,11 +7,13 @@
 	remote = origin
 	username = cw00
 [alias]
-	log1 = log --oneline --graph --decorate --all
+	log1 = log --oneline --graph --decorate
 	change-commits = "!f() { VAR=$1; OLD=$2; NEW=$3; shift 3; git filter-branch --env-filter \"if [ \\\"$`echo $VAR`\\\" = '$OLD' ]; then export $VAR='$NEW'; fi\" $@; }; f"
 [pull]
 	ff = only
 [http "https://chipmaster2.qti.qualcomm.com"]
+	followRedirects = true
+[http "https://qpm-git.qualcomm.com"]
 	followRedirects = true
 [credential]
 	helper = store

@@ -1,6 +1,7 @@
 # Path to your oh-my-zsh installation.
 export ZSH=/home/cw00/dotfiles/oh-my-zsh
 export ZSH_CUSTOM=/home/cw00/dotfiles/zsh-custom
+export ZSH_DISABLE_COMPFIX=true
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
@@ -50,7 +51,7 @@ ZSH_THEME="dan"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(ssh-agent) # git mercurial)
+plugins=(ssh-agent command-not-found) # git mercurial)
 
 # User configuration
 
@@ -99,7 +100,7 @@ if [ -n "$INSIDE_EMACS" ]; then
     print -P "\033AnSiTc %d"
 fi
 
-#. /mnt/departments/engineering/modules/tcl/init/zsh
+. /mnt/departments/engineering/modules/latest/init/zsh
 
 #module load consulting
 #module load global
@@ -138,3 +139,9 @@ export PATH=$PATH:$ANDROID_HOME/emulator
 export PATH=$PATH:$ANDROID_HOME/tools
 export PATH=$PATH:$ANDROID_HOME/tools/bin
 export PATH=$PATH:$ANDROID_HOME/platform-tools
+
+export PATH=$PATH:~/dotfiles/doomemacs/bin
+
+export PYENV_ROOT="$HOME/.pyenv"
+command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
