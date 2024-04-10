@@ -28,3 +28,25 @@ emacs
 
 Once you're in emacs, you'll need to install fonts with `M-x nerd-icons-install-fonts`
 
+## Installing Emacs by source
+
+If you're going to install emacs manually, download it from the emacs mirror. On
+Ubuntu 22.04, you need to install a bunch of dependencies:
+
+``` bash
+sudo apt install libx11-dev
+sudo apt install libmagick++-dev
+sudo apt install libxaw7-dev
+sudo apt install libgccjit-11-dev # assuming GCC 11
+sudo apt install libgif-dev gnutls-bin libtree-sitter-dev
+sudo apt install libgnutls28-dev
+sudo apt install libjansson-dev
+sudo apt install libncurses-dev
+sudo apt install libharfbuzz-dev
+```
+
+Then configure with:
+
+``` bash
+./configure --with-xml2 --with-native-compilation --with-imagemagick --with-x-toolkit=lucid --with-json 'CFLAGS=-O2 -march=native -fomit-frame-pointer' --with-tree-sitter
+```
