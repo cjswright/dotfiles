@@ -100,7 +100,7 @@ if [ -n "$INSIDE_EMACS" ]; then
     print -P "\033AnSiTc %d"
 fi
 
-. /mnt/departments/engineering/modules/latest/init/zsh
+#. /mnt/departments/engineering/modules/latest/init/zsh
 
 #module load consulting
 #module load global
@@ -141,7 +141,3 @@ export PATH=$PATH:$ANDROID_HOME/tools/bin
 export PATH=$PATH:$ANDROID_HOME/platform-tools
 
 export PATH=$PATH:~/dotfiles/doomemacs/bin
-
-export PYENV_ROOT="$HOME/.pyenv"
-command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init -)"
