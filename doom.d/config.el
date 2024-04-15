@@ -38,14 +38,26 @@
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
 (setq display-line-numbers-type t)
 
+;; Useful for local configuration
+(load-file (concat doom-user-dir "/local.el"))
+
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
-(setq org-directory "~/OneDrive/Personal/org/")
+
+
+;; Set org files location in local.el, e.g.:
+;; (setq org-directory "~/OneDrive/Personal/org/")
+
+(if (= (length org-directory) 0)
+    (setq org-directory "~/org"))
+
 (setq +org-capture-todo-file "inbox.org")
+
+(if (file-directory-p org-directory)
+  (setq org-agenda-files (directory-files-recursively org-directory "\.org$")))
 
 (after! lang:org
   (setq org-default-notes-file (concat org-directory "/inbox.org"))
-  (setq org-agenda-files '("~/OneDrive/Personal/org/"))
   (setq org-refile-targets '((nil :tag . "REFILE")
                              (org-agenda-files :tag . "REFILE"))
         org-refile-use-outline-path 'file
