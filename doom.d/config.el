@@ -81,6 +81,9 @@
   (c-set-offset 'statement-case-open 0)
   (c-set-offset 'brace-list-intro '+))
 
+(after! git-commit
+  (setq git-commit-summary-max-length 72))
+
 (after! comint
   (setq comint-prompt-read-only t
         comint-buffer-maximum-size 32768)) ; 32k the default
